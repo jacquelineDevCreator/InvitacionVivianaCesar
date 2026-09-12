@@ -1181,10 +1181,10 @@ tr:last-child td{border-bottom:0}
       "<dt>Nos acompaña de</dt><dd>" + esc(r.estado || "–") + "</dd>" +
       "</dl>" +
       "<a class='btn solid block' href='" + waLink(r) + "' target='_blank' rel='noopener' style='margin-top:22px'>" +
-        "<span>Enviar confirmación por WhatsApp</span>" +
+        "<span>Reenviar por WhatsApp</span>" +
         "<svg viewBox='0 0 24 24'><path d='M2 21l21-9L2 3v7l15 2-15 2z'/></svg>" +
       "</a>" +
-      "<p class='muted' style='margin-top:8px;font-size:.78rem'>Se abre WhatsApp con el mensaje ya escrito — solo toca enviar.</p>" +
+      "<p class='muted' style='margin-top:8px;font-size:.78rem'>Ya abrimos WhatsApp con tu confirmación — si no se abrió o quieres mandarla de nuevo, toca aquí (solo falta que le des enviar).</p>" +
       "<button class='btn' id='dl-card' type='button' style='margin-top:16px'>" +
         "<span>" + cardLabel + "</span>" + cardIcon +
       "</button>" +
@@ -1630,6 +1630,9 @@ tr:last-child td{border-bottom:0}
         ciudad: ciudad,
         message: message
       };
+
+      // Abre WhatsApp de una vez (mismo clic del invitado, para que no lo bloquee el navegador).
+      try { window.open(waLink(rec), "_blank", "noopener"); } catch (e) {}
 
       var btn = $("#f-submit", form);
       btn.disabled = true; btn.innerHTML = "<span>Guardando…</span>";
